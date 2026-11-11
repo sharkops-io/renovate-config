@@ -1,0 +1,21 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": [
+    "Shared Renovate preset for the sharkops-io and example GitHub orgs, extended by each org's org-inherited-config.json. Ported from the GitLab runner's default.json (example-org/renovate); the GitLab-only rules stay there until the deploy repos move.",
+    "minimumReleaseAgeBehaviour 'timestamp-optional' only governs dependencies whose datasource returns no releaseTimestamp (common for OCI charts); it does not make the 1-day wait advisory."
+  ],
+  "extends": [
+    "config:recommended",
+    "customManagers:dockerfileVersions"
+  ],
+  "minimumReleaseAge": "1 days",
+  "minimumReleaseAgeBehaviour": "timestamp-optional",
+  "packageRules": [
+    {
+      "description": "sharkops-io publishes nothing until a tag, so minor/patch bumps automerge once checks pass (carried over from the GitLab sharkops/** rule). NOT sharkops-io/.github: its reusable workflows run in every repo, the same reason gitlab-ci-common-config was excluded on GitLab.",
+      "matchRepositories": ["sharkops-io/**", "!sharkops-io/.github"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    }
+  ]
+}

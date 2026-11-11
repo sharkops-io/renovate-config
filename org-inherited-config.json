@@ -1,0 +1,7 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-inherited-schema.json",
+  "description": "Every repo in the org gets Renovate without an onboarding PR or its own renovate.json, using the shared preset in this repo's default.json.",
+  "onboarding": false,
+  "requireConfig": "optional",
+  "extends": ["github>sharkops-io/renovate-config"]
+}
